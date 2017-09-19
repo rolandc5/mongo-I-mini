@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
+
 /* A schema is a description of the format of documents within a
  * collection. In this case, each Bear is a document of the form:
  *
@@ -11,8 +13,28 @@ const mongoose = require('mongoose');
  *
  * Make createdAt default to the current date.
  */
-const BearSchema = new mongoose.Schema({
-  // TODO: write your schema here
+const BearSchema = new Schema({
+  species: {
+    type: String,
+  },
+  latinName: {
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  /*
+  status: {
+    type: [{
+      type: String,
+      enum: ['pending', 'completed', 'future'],
+    }],
+    default: [ 'pending' ],
+  }
+  */
 });
 
-module.exports = mongoose.model('Bears', BearSchema);
+// {'species': 'Name', 'latinName': 'Latin', 'createdAt': 'Date'}
+
+module.exports = mongoose.model('bears', BearSchema);
